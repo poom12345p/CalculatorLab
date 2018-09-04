@@ -8,13 +8,13 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        private bool isNumber(string str)
+        public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator(string str)
         {
             switch(str) {
                 case "+":
@@ -32,7 +32,8 @@ namespace CPE200Lab1
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
-            } else
+            }
+            else
             {
                 return calculate(parts[1], parts[0], parts[2], 4);
             }
@@ -58,6 +59,11 @@ namespace CPE200Lab1
                         }
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
+                        
+                        if (parts.Length ==1||parts[1].Length + parts[0].Length < maxOutputSize)
+                        {
+                            return Math.Sqrt(Convert.ToDouble(operand)).ToString();
+                        }
                         // trim the fractional part gracefully. =
                         return result.ToString("N" + remainLength);
                     }
@@ -78,6 +84,10 @@ namespace CPE200Lab1
                         }
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
+                        if (parts.Length == 1 || parts[1].Length + parts[0].Length < maxOutputSize)
+                        {
+                            return (1.0 / Convert.ToDouble(operand)).ToString();
+                        }
                         // trim the fractional part gracefully. =
                         return result.ToString("N" + remainLength);
                     }
@@ -114,11 +124,16 @@ namespace CPE200Lab1
                         }
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
+                        if (parts.Length == 1 || parts[1].Length + parts[0].Length < maxOutputSize)
+                        {
+                            return (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand)).ToString();
+                        }
                         // trim the fractional part gracefully. =
                         return result.ToString("N" + remainLength);
                     }
                     break;
                 case "%":
+                   ((Convert.ToDouble(firstOperand) / 100) * Convert.ToDouble(secondOperand)).ToString();
                     //your code here
                     break;
             }
