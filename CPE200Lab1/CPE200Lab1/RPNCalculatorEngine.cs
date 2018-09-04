@@ -12,8 +12,13 @@ namespace CPE200Lab1
         {
             Stack<string> numbers = new Stack<string>();
             string[] parts = str.Split(' ');
+            if(parts.Length ==1)
+            {
+                return "E";
+            }
             for(int i=0;i<parts.Length;i++)
             {
+
                 if(isNumber(parts[i]))
                 {
                     numbers.Push(parts[i]);
@@ -29,20 +34,24 @@ namespace CPE200Lab1
                         numbers.Pop();
                        numbers.Push(calculate(parts[i], fist, second));
                     }
+                    else
+                    {
+                        return "E";
+                    }
                 }
             
             }
 
             if(numbers.Count >1)
             {
-                return "E";
+               return "E";
             }
             else
             {
+
                 return numbers.Peek();
             }
             // your code here
-            //return "E";
         }
     }
 }
