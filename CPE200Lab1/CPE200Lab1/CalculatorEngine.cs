@@ -36,12 +36,17 @@ namespace CPE200Lab1
             }
             else
             {
+                if (parts.Length >= 4 && parts[3] == "%")
+                {
+                    return calculate(parts[1], parts[0], calculate(parts[3], parts[0], parts[2], 4), 4);
+                }
                 return calculate(parts[1], parts[0], parts[2], 4);
             }
 
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
+           
             switch (operate)
             {
                 case "√":

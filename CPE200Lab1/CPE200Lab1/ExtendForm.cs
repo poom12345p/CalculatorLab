@@ -32,6 +32,7 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
                     return true;
             }
             return false;
@@ -80,27 +81,39 @@ namespace CPE200Lab1
             }
             string operate = ((Button)sender).Text;
             string firstOperand;
-            if (engine.isNumber(lblDisplay.Text))
+            firstOperand = lblDisplay.Text;
+            if (!engine.isNumber(lblDisplay.Text))
             {
-                firstOperand = lblDisplay.Text;
+                string[] parts;
+                parts = firstOperand.ToString().Split(' ');
+                firstOperand = parts[parts.Length - 1];
+                Console.WriteLine(firstOperand);
+            }
+
+            string result;
+
+            if (engine.isNumber(firstOperand))
+            {
+               result = engine.unaryCalculate(operate, firstOperand);
             }
             else
             {
-                firstOperand = "E";
+                result = "E";
             }
-            string result = engine.unaryCalculate(operate, firstOperand);
+
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
             }
             else
             {
-                lblDisplay.Text = result;
+                lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - 1);
+                lblDisplay.Text +=result;
             }
 
         }
         private void btnBack_Click(object sender, EventArgs e)
-        {
+        {       
             if (lblDisplay.Text is "Error")
             {
                 return;
