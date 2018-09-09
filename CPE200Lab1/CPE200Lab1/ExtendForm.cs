@@ -72,6 +72,33 @@ namespace CPE200Lab1
             }
         }
 
+        private void btnUnaryOperator_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            string operate = ((Button)sender).Text;
+            string firstOperand;
+            if (engine.isNumber(lblDisplay.Text))
+            {
+                firstOperand = lblDisplay.Text;
+            }
+            else
+            {
+                firstOperand = "E";
+            }
+            string result = engine.unaryCalculate(operate, firstOperand);
+            if (result is "E" || result.Length > 8)
+            {
+                lblDisplay.Text = "Error";
+            }
+            else
+            {
+                lblDisplay.Text = result;
+            }
+
+        }
         private void btnBack_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
