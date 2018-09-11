@@ -28,10 +28,10 @@ namespace CPE200Lab1
                     if(numbers.Count >=2)
                     {
                         string fist, second;
-                        second = numbers.Peek();
-                        numbers.Pop();
-                        fist = numbers.Peek();
-                        numbers.Pop();
+                        second = numbers.Pop(); ;
+                      
+                        fist = numbers.Pop(); ;
+                       
                        numbers.Push(calculate(parts[i], fist, second));
                     }
                     else
