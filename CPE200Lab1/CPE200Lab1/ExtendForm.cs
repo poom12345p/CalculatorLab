@@ -225,7 +225,11 @@ namespace CPE200Lab1
             {
                 return;
             }
-            memory += Convert.ToDouble(lblDisplay.Text);
+            btnEqual_Click(null, null);
+            if (!(lblDisplay.Text is "Error"))
+            {
+                memory += Convert.ToDouble(lblDisplay.Text);
+            }
         }
 
         private void btnMC_Click(object sender, EventArgs e)
@@ -239,7 +243,12 @@ namespace CPE200Lab1
             {
                 return;
             }
-            memory -= Convert.ToDouble(lblDisplay.Text);
+            btnEqual_Click(null, null);
+            if (!(lblDisplay.Text is "Error"))
+            {
+                memory -= Convert.ToDouble(lblDisplay.Text);
+            }
+
 
         }
 
@@ -249,7 +258,11 @@ namespace CPE200Lab1
             {
                 return;
             }
-            lblDisplay.Text = memory.ToString();
+            btnEqual_Click(null, null);
+            if (!(lblDisplay.Text is "Error"))
+            {
+                lblDisplay.Text = memory.ToString();
+            }
         }
 
         private void btnMS_Click(object sender, EventArgs e)
@@ -258,7 +271,11 @@ namespace CPE200Lab1
             {
                 return;
             }
-            memory = Convert.ToDouble(lblDisplay.Text);
+            btnEqual_Click(null, null);
+            if (!(lblDisplay.Text is "Error"))
+            {
+                memory = Convert.ToDouble(lblDisplay.Text);
+            }
         }
     }
 }
