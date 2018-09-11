@@ -107,7 +107,9 @@ namespace CPE200Lab1
             }
             else
             {
-                lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - 1);
+                string[] parts;
+                parts = firstOperand.ToString().Split(' ');
+                lblDisplay.Text = lblDisplay.Text.Substring(0, lblDisplay.Text.Length - parts[parts.Length - 1].Length);
                 lblDisplay.Text +=result;
             }
 
