@@ -5,15 +5,33 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CPE200Lab1
+/// <summary>
+/// The main alculatorEngine class.
+/// Contains all methods for performing basic  CalculatorEngine functions.
+/// </summary>
 {
     public class CalculatorEngine
     {
+        /// <summary>
+        /// Check str is can be number
+        /// </summary>
+        /// <returns>
+        /// boolean true if str can be number else return false
+        /// </returns>
+        ///  /// <param name="str">An String.</param>
         public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
+        /// <summary>
+        /// Check str is can be Operator
+        /// </summary>
+        /// <returns>
+        /// boolean true if str can be Operator else return false
+        /// </returns>
+        ///  /// <param name="str">An String.</param>
         public bool isOperator(string str)
         {
             switch(str) {
@@ -26,6 +44,14 @@ namespace CPE200Lab1
             }
             return false;
         }
+
+        /// <summary>
+        /// Process String to result
+        /// </summary>
+        /// <returns>
+        /// string of result
+        /// </returns>
+        /// <param name="str">An String.</param>
 
         public string Process(string str)
         {
@@ -52,6 +78,17 @@ namespace CPE200Lab1
             }
 
         }
+
+
+        /// <summary>
+        /// calculate unaryoperrator
+        /// </summary>
+        /// <returns>
+        /// string of result
+        /// </returns>
+        /// <param name="operate">An String.</param>
+        /// <param name="operand">An String.</param>
+        /// <param name="maxOutputSize">An String.</param>
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
            
@@ -109,6 +146,18 @@ namespace CPE200Lab1
             }
             return "E";
         }
+
+
+        /// <summary>
+        /// calculate 
+        /// </summary>
+        /// <returns>
+        /// string of result
+        /// </returns>
+        /// <param name="operate">An String.</param>
+        /// <param name="firstOperand">An String.</param>
+        /// <param name="secondOperand">An String.</param>
+        /// <param name="maxOutputSize">An String.</param>
 
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
