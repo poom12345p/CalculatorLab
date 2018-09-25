@@ -16,7 +16,6 @@ namespace CPE200Lab1
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         double memory;
-        private CalculatorEngine engine;
         private RPNCalculatorEngine RPNengine;
         public ExtendForm()
         {
@@ -94,7 +93,7 @@ namespace CPE200Lab1
 
             if (engine.isNumber(firstOperand))
             {
-               result = engine.unaryCalculate(operate, firstOperand);
+               result = engine.calculate(operate, firstOperand);
             }
             else
             {
@@ -148,7 +147,7 @@ namespace CPE200Lab1
             string result = engine.Process(lblDisplay.Text);
             if (result is "E")
             {
-                result = RPNengine.Process(lblDisplay.Text);
+                result = RPNengine.calculator(lblDisplay.Text);
                 if (result is "E")
                 {
                     lblDisplay.Text = "Error";
