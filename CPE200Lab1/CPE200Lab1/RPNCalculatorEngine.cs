@@ -11,13 +11,15 @@ namespace CPE200Lab1
 
     public class RPNCalculatorEngine : TheCalculatorEngine
     {
+        protected Stack<string> myStack = new Stack<string>();
+
+
         public string calculator(string str)
         {
             
             try
             {
 
-                Stack<string> numbers = new Stack<string>();
                 string[] parts = str.Split(' ');
                 if (parts.Length == 1)
                 {
@@ -28,29 +30,29 @@ namespace CPE200Lab1
 
                     if (isNumber(parts[i]))
                     {
-                        numbers.Push(parts[i]);
+                        myStack.Push(parts[i]);
                     }
                     else if (isOperator(parts[i]))
                     {
                        
                             string fist, second;
-                            second = numbers.Pop(); ;
+                            second = myStack.Pop(); ;
 
-                            fist = numbers.Pop(); ;
+                            fist = myStack.Pop(); ;
 
-                            numbers.Push(calculate(parts[i], fist, second));
+                            myStack.Push(calculate(parts[i], fist, second));
                     }
 
                 }
 
-                if (numbers.Count > 1)
+                if (myStack.Count > 1)
                 {
                     return "E";
                 }
                 else
                 {
 
-                    return numbers.Peek();
+                    return myStack.Peek();
                 }
             }
             catch(Exception ex)

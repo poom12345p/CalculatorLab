@@ -6,8 +6,28 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class TheCalculatorEngine
+    public class TheCalculatorEngine
     {
+        public bool isNumber(string str)
+        {
+            double retNum;
+            return Double.TryParse(str, out retNum);
+        }
+
+        public bool isOperator(string str)
+        {
+            switch (str)
+            {
+                case "+":
+                case "-":
+                case "X":
+                case "÷":
+                case "%":
+                    return true;
+            }
+            return false;
+        }
+
         public string calculate(string operate, string operand, int maxOutputSize = 8)
         {
 
@@ -105,10 +125,9 @@ namespace CPE200Lab1
                 case "%":
                     return ((Convert.ToDouble(firstOperand) / 100) * Convert.ToDouble(secondOperand)).ToString();
                     //your code here
-                    break;
             }
             return "E";
         }
     }
 }
-}
+

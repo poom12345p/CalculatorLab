@@ -20,7 +20,6 @@ namespace CPE200Lab1
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
             RPNengine = new RPNCalculatorEngine();
         }
 
@@ -81,7 +80,7 @@ namespace CPE200Lab1
             string operate = ((Button)sender).Text;
             string firstOperand;
             firstOperand = lblDisplay.Text;
-            if (!engine.isNumber(lblDisplay.Text))
+            if (!RPNengine.isNumber(lblDisplay.Text))
             {
                 string[] parts;
                 parts = firstOperand.ToString().Split(' ');
@@ -91,9 +90,9 @@ namespace CPE200Lab1
 
             string result;
 
-            if (engine.isNumber(firstOperand))
+            if (RPNengine.isNumber(firstOperand))
             {
-               result = engine.calculate(operate, firstOperand);
+               result = RPNengine.calculate(operate, firstOperand);
             }
             else
             {
@@ -144,7 +143,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = RPNengine.calculator(lblDisplay.Text);
             if (result is "E")
             {
                 result = RPNengine.calculator(lblDisplay.Text);

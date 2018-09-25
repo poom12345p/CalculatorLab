@@ -11,29 +11,25 @@ namespace CPE200Lab1
         protected double firstOperand;
         protected double secondOperand;
 
-        public bool isNumber(string str)
+        public void setFirstOperand(String num)
         {
-            double retNum;
-            return Double.TryParse(str, out retNum);
-        }
-
-        public bool isOperator(string str)
-        {
-            switch(str) {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                case "%":
-                    return true;
+            if(isNumber(num))
+            {
+                firstOperand = Convert.ToDouble(num);
             }
-            return false;
         }
 
-        public string Process(string str)
+        public void setsecondOperand(String num)
+        {
+            if (isNumber(num))
+            {
+                secondOperand = Convert.ToDouble(num);
+            }
+        }
+        public string calculator(string str)
         {
             string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
             }
@@ -47,5 +43,6 @@ namespace CPE200Lab1
             }
 
         }
+    }
         
 }
