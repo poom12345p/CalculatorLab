@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form,View
     {
         protected bool hasDot;
         private bool isAllowBack;
@@ -19,7 +19,7 @@ namespace CPE200Lab1
         private string firstOperand;
         protected string operate;
         private double memory;
-        protected CalculatorEngine engine;
+        protected Model engine;
 
         private void resetAll()
         {
@@ -31,7 +31,10 @@ namespace CPE200Lab1
             firstOperand = null;
         }
 
-      
+        public void Notify(Model m)
+        {
+
+        }
 
         public MainForm()
         {
@@ -81,7 +84,7 @@ namespace CPE200Lab1
             }
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand);
+            string result = ((CalculatorEngine)engine).calculate(operate, firstOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -106,7 +109,7 @@ namespace CPE200Lab1
             if(firstOperand != null)
             {
                 string secondOperand = lblDisplay.Text;
-                string result = engine.calculate(operate, firstOperand, secondOperand);
+                string result = ((CalculatorEngine)engine).calculate(operate, firstOperand, secondOperand);
                 if (result is "E" || result.Length > 8)
                 {
                     lblDisplay.Text = "Error";
@@ -141,7 +144,7 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+            string result = ((CalculatorEngine)engine).calculate(operate, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
