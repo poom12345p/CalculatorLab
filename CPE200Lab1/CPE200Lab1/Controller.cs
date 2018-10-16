@@ -21,7 +21,7 @@ namespace CPE200Lab1
         }
 
         // virtual keyword allow the method to be overriden
-        public virtual void Calculate(string operate, string operand)
+        public virtual void Calculate(string str)
         {
             throw new NotImplementedException();
         }

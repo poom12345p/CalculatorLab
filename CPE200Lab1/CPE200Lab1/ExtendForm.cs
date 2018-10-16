@@ -17,16 +17,22 @@ namespace CPE200Lab1
         private bool isSpaceAllowed = false;
         double memory;
         private Model RPNengine;
+        private Controller controller;
+
         public ExtendForm()
         {
             InitializeComponent();
-            RPNengine = new RPNCalculatorEngine();
-            //((RPNCalculatorEngine) RPNengine)
+            RPNengine = new CalculatorModel();
+            controller = new CalculatorController();
+            RPNengine.AttachObserver(this);
+            controller.AddModel(RPNengine);
+
+
         }
 
         public void Notify(Model m)
         {
-
+            lblDisplay.Text = ((CalculatorModel)m).getResult();
         }
         private bool isOperator(char ch)
         {
@@ -85,7 +91,7 @@ namespace CPE200Lab1
             string operate = ((Button)sender).Text;
             string firstOperand;
             firstOperand = lblDisplay.Text;
-            if (!((RPNCalculatorEngine)RPNengine).isNumber(lblDisplay.Text))
+            if (!((CalculatorModel)RPNengine).isNumber(lblDisplay.Text))
             {
                 string[] parts;
                 parts = firstOperand.ToString().Split(' ');
@@ -95,9 +101,9 @@ namespace CPE200Lab1
 
             string result;
 
-            if (((RPNCalculatorEngine)RPNengine).isNumber(firstOperand))
+            if (((CalculatorModel)RPNengine).isNumber(firstOperand))
             {
-               result = ((RPNCalculatorEngine)RPNengine).calculate(operate, firstOperand);
+               result = ((CalculatorModel)RPNengine).calculate(operate, firstOperand);
             }
             else
             {
@@ -148,7 +154,8 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = ((CalculatorEngine)RPNengine).calculator(lblDisplay.Text);
+            controller.Calculate(lblDisplay.Text);
+            /*string result = ((CalculatorEngine)RPNengine).calculator(lblDisplay.Text);
             if (result is "E")
             {
                 result = ((RPNCalculatorEngine)RPNengine).calculator(lblDisplay.Text);
@@ -164,7 +171,7 @@ namespace CPE200Lab1
             else
             {
                 lblDisplay.Text = result;
-            }
+            }*/
         }
 
         private void btnSign_Click(object sender, EventArgs e)

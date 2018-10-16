@@ -8,12 +8,13 @@ namespace CPE200Lab1
 {
     class CalculatorController:Controller
     {
-        public override void Calculate(string operate, string operand)
+        public override void Calculate(string str)
         {
-            foreach (TheCalculatorEngine m in mList)
+            foreach (CalculatorModel m in mList)
             {
-
+                m.calculator(str);
             }
         }
     }
+
 }

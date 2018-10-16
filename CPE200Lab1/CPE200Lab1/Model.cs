@@ -10,6 +10,7 @@ namespace CPE200Lab1
     public class Model
     {
         protected ArrayList oList;
+        
 
         public Model()
         {
